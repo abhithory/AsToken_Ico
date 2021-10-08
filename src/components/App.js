@@ -4,7 +4,6 @@ import AsTokenJson from '../abis/AsToken.json'
 import AsTokenICOJson from '../abis/AsTokenSale.json'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
 import './App.css';
 import Navbar from './Navbar'
 import Main from './Main'
@@ -89,16 +88,18 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.buyTokens(_noOfTokens)
       .send({ from: this.state.account, value: valueOfTokens })
       .on('transactionHash', (hash) => {
-        this.loadBlockchainData();
+        console.log('transactionHash',hash)
       })
       .on('receipt', (receipt) => {
-        this.loadBlockchainData();
+
       })
       .on('confirmation', (confirmationNumber, receipt) => {
+        console.log('receipt',receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
+        console.log('error',error)
         this.loadBlockchainData();
       });
   }
@@ -109,16 +110,18 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.withdraw(_userAddress)
       .send({ from: this.state.account })
       .on('transactionHash', (hash) => {
-        this.loadBlockchainData();
+        console.log('transactionHash',hash)
+
       })
       .on('receipt', (receipt) => {
-        this.loadBlockchainData();
       })
       .on('confirmation', (confirmationNumber, receipt) => {
+        console.log('receipt',receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
+        console.log('error',error)
         this.loadBlockchainData();
       });
   }
@@ -128,16 +131,17 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.endSale()
       .send({ from: this.state.account })
       .on('transactionHash', (hash) => {
-        this.loadBlockchainData();
+        console.log('transactionHash',hash)
       })
       .on('receipt', (receipt) => {
-        this.loadBlockchainData();
       })
       .on('confirmation', (confirmationNumber, receipt) => {
+        console.log('receipt',receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
+        console.log('error',error)
         this.loadBlockchainData();
       });
   }

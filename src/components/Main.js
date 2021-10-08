@@ -63,6 +63,7 @@ class Main extends Component {
               </div>
             </div>
             <div id="liveAlertPlaceholder"></div>
+            
 
             <button onClick={this.buyAsTokens} className="btn btn-primary btn-lg" type="button">Buy Token Now</button>
            
