@@ -21,7 +21,7 @@ class Main extends Component {
     let progress = (tokenSold / tokenForSell) * 100
     return progress;
   }
-  
+
   buyAsTokens = async () => {
 
     var tokensCount = document.getElementById('valueOfRange').value;
@@ -63,10 +63,10 @@ class Main extends Component {
               </div>
             </div>
             <div id="liveAlertPlaceholder"></div>
-            
+
 
             <button onClick={this.buyAsTokens} className="btn btn-primary btn-lg" type="button">Buy Token Now</button>
-           
+
 
           </div>
 
@@ -80,13 +80,11 @@ class Main extends Component {
               <span className="token-sold"></span> {this.props.tokensSold}/{this.props.tokensForSell} <span className="tokens-available"></span> tokens Sold
             </p>
             <hr />
-            <p id="accountAddress">{this.props.account}</p>
+          <a href="https://faucet.ropsten.be" target="_blank" className="btn btn-outline-success">Get free Ether for Ropsten test network</a>
           </div>
-
         </div>
 
 
-        {/* foo */}
 
 
       </>

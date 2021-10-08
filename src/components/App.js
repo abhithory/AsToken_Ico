@@ -13,19 +13,23 @@ class App extends Component {
 
   async componentWillMount() {
     await this.loadWeb3()
-    await this.loadBlockchainData()
   }
 
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.enable()
+      await this.loadBlockchainData()
+
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider)
+      await this.loadBlockchainData()
+
     }
     else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      this.setState({ connected: false })
+      
     }
   }
 
@@ -77,7 +81,7 @@ class App extends Component {
       this.setState({ loading: false })
 
     } else {
-      window.alert('As Token contract not deployed to detected network.')
+      this.setState({ connected: false })
     }
   }
 
@@ -88,18 +92,18 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.buyTokens(_noOfTokens)
       .send({ from: this.state.account, value: valueOfTokens })
       .on('transactionHash', (hash) => {
-        console.log('transactionHash',hash)
+        console.log('transactionHash', hash)
       })
       .on('receipt', (receipt) => {
 
       })
       .on('confirmation', (confirmationNumber, receipt) => {
-        console.log('receipt',receipt)
+        console.log('receipt', receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
-        console.log('error',error)
+        console.log('error', error)
         this.loadBlockchainData();
       });
   }
@@ -110,18 +114,18 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.withdraw(_userAddress)
       .send({ from: this.state.account })
       .on('transactionHash', (hash) => {
-        console.log('transactionHash',hash)
+        console.log('transactionHash', hash)
 
       })
       .on('receipt', (receipt) => {
       })
       .on('confirmation', (confirmationNumber, receipt) => {
-        console.log('receipt',receipt)
+        console.log('receipt', receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
-        console.log('error',error)
+        console.log('error', error)
         this.loadBlockchainData();
       });
   }
@@ -131,17 +135,17 @@ class App extends Component {
     await this.state.asTokenIcoContract.methods.endSale()
       .send({ from: this.state.account })
       .on('transactionHash', (hash) => {
-        console.log('transactionHash',hash)
+        console.log('transactionHash', hash)
       })
       .on('receipt', (receipt) => {
       })
       .on('confirmation', (confirmationNumber, receipt) => {
-        console.log('receipt',receipt)
+        console.log('receipt', receipt)
         this.loadBlockchainData();
 
       })
       .on('error', (error, receipt) => {
-        console.log('error',error)
+        console.log('error', error)
         this.loadBlockchainData();
       });
   }
@@ -160,28 +164,49 @@ class App extends Component {
       availableEthForWithdraw: 0,
       account: '',
       isDeployer: false,
+      connected: true,
       loading: true
     }
 
     this.buyAsTokens = this.buyAsTokens.bind(this)
     this.witdrawEth = this.witdrawEth.bind(this)
     this.stopIco = this.stopIco.bind(this)
-    
+
   }
 
 
   render() {
     return (
       <div className="d-flex flex-column bg-light bg-gradient" style={{ height: '100vh' }}>
-        <Navbar account={this.state.account} isDeployer={this.state.isDeployer} availableEthForWithdraw={this.state.availableEthForWithdraw} witdrawEth={this.witdrawEth} stopIco={this.stopIco}/>
-        {this.state.loading
+        {this.state.connected
           ?
-          <div className="text-center m-5">
-            <div className="spinner-border" role="status">
-            </div>
-          </div>
+          <>
+            <Navbar account={this.state.account} isDeployer={this.state.isDeployer} availableEthForWithdraw={this.state.availableEthForWithdraw} witdrawEth={this.witdrawEth} stopIco={this.stopIco} />
+            {this.state.loading
+              ?
+              <div className="text-center m-5">
+                <div className="spinner-border" role="status">
+                </div>
+              </div>
+              :
+              <Main account={this.state.account} asTokenPrice={this.state.asTokenPrice} asTokenBalance={this.state.asTokenBalance} tokensForSell={this.state.tokensForSell} tokensSold={this.state.tokensSold} buyAsTokens={this.buyAsTokens} />
+            }
+          </>
           :
-          <Main account={this.state.account} asTokenPrice={this.state.asTokenPrice} asTokenBalance={this.state.asTokenBalance} tokensForSell={this.state.tokensForSell} tokensSold={this.state.tokensSold} buyAsTokens={this.buyAsTokens} />
+          <div className="container text-center">
+            <h1 className="mt-3 text-primary">Please Connect to Ropsten test network</h1>
+            <a href="https://faucet.ropsten.be/" target="_blank" className="btn btn-success">Get free Ether for Ropsten test network</a>
+            <h4 className="my-3">Follow these instructions for connect metamask with Ropsten test network</h4>
+            <hr/>
+            
+            <h6>1. Install  <a href="https://metamask.io/download.html" target="_blank" className="btn btn-outline-primary">Meta-mask</a></h6>
+            <h6>2. Create Your Account</h6>
+            <h6>3. Connect with Ropsten test network</h6>
+            <h6>4. Get Some Free Ether by Ropsten Faucet</h6>
+            <hr/>
+            <img className="img-fluid h-50" src="img/ropston.jpg" alt="" />
+
+          </div>
         }
       </div>
     );

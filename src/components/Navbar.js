@@ -25,7 +25,7 @@ class Navbar extends Component {
 
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container">
-          <a className="navbar-brand" href="#">As Token ICO</a>
+          <a className="navbar-brand" href="#"><b>As Token ICO</b></a>
 
           <div className="ms-auto d-md-flex align-items-center text-light">
             <h6 className="d-md-flex d-none me-2">{this.props.account}</h6>
@@ -42,8 +42,8 @@ class Navbar extends Component {
               ?
               <div className="">
 
-                <button className="btn btn-warning ms-2" onClick={this.withdrawEth} title={`${this.props.availableEthForWithdraw} Ether`}>Widraw Eth</button>
-                <button className="btn btn-danger ms-2" onClick={this.stopIco} title={`${this.props.availableEthForWithdraw} Ether`}>Stop Ico</button>
+                <button className="btn btn-warning mx-2" onClick={this.withdrawEth} title={`${this.props.availableEthForWithdraw} Ether`}>Widraw Eth</button>
+                <button className="btn btn-danger mx-2" onClick={this.stopIco} title={`${this.props.availableEthForWithdraw} Ether`}>Stop Ico</button>
               </div>
 
               :
