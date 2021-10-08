@@ -2,7 +2,7 @@ require('babel-register');
 require('babel-polyfill');
 
 require('dotenv').config();
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 
 
@@ -13,7 +13,8 @@ module.exports = {
       port: 7545,
       network_id: "*" 
     },
-    development: {
+    ropsten: {
+      networkCheckTimeout: 10000,
       provider: function(){
         return new HDWalletProvider(
           process.env.MNEMONIC,

@@ -1,0 +1,31 @@
+
+ Deploying 'AsToken'
+ -------------------
+ > transaction hash:    0x7adcb7f6ff2d269335827fd1af50c4ac805bac22204d4366068f21f84d7264ae
+ > Blocks: 2            Seconds: 11
+ > contract address:    0xC330ff0b9a67AB722aC531E0682A104aDd925Db5
+ > block number:        11185789
+ > block timestamp:     1633665751
+ > account:             0x2D7510f8047Fa640dC7f7c829d629e4021846DB1
+ > balance:             0.273706775
+ > gas used:            812748 (0xc66cc)
+ > gas price:           25 gwei
+ > value sent:          0 ETH
+ > total cost:          0.0203187 ETH
+
+
+ Deploying 'AsTokenSale'
+ -----------------------
+ > transaction hash:    0x3646231176b170d29643426aab17a111817ba5b4b25714d348019b56c5717488
+ > Blocks: 1            Seconds: 12
+ > contract address:    0xe4C2c6d1fb4dF40391f61941C2B42be562a9A19f
+ > block number:        11185790
+ > block timestamp:     1633665758
+ > account:             0x2D7510f8047Fa640dC7f7c829d629e4021846DB1
+ > balance:             0.2574135
+ > gas used:            651731 (0x9f1d3)
+ > gas price:           25 gwei
+ > value sent:          0 ETH
+ > total cost:          0.016293275 ETH
+
+
