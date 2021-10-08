@@ -1,5 +1,5 @@
 # As Token ICO
-Created Own As Token (ERC20) and Website for buy it.
+I Created my own 'As Token' (ERC20) on the Ethereum blockchain. And also created a Website for buying 'As Token' using React.
 
 ## Deployed Smart Contract to **Ropsten test network** and React website to Github pages.
 
